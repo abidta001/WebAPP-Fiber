@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #15cfcf;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 100px auto;
+      text-align: center;
+      background-color: white;
+      padding: 50px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .welcome-text {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: rgb(250, 142, 109);
+    }
+
+    .logout-button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #dd5c5c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-button:hover {
+      background-color: #000000;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #4a90e2;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    window.onpopstate = function(event) {
+        history.go(1);
+    };
+  </script>
+
+  <header>
+    <h1>Welcome to Your Dashboard</h1>
+  </header>
+
+  <div class="container">
+    <p class="welcome-text">Hello, {{.UserName}}! We're glad to have you back.</p>
+    <form action="/logout">
+      <button type="submit" class="logout-button">Log Out</button>
+    </form>
+  </div>
+  <script>
+    // Prevent back navigation
+    function preventBackNavigation() {
+        history.pushState(null, document.title, location.href);
+    }
+
+    window.addEventListener('popstate', preventBackNavigation);
+    preventBackNavigation(); // Call it initially
+
+    // Function to enable back navigation on logout
+    function enableBackNavigation() {
+        window.removeEventListener('popstate', preventBackNavigation);
+    }
+</script>
+
+</body>
+
+
+
+
+</html>
